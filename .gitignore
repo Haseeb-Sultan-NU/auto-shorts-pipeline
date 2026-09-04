@@ -1,0 +1,26 @@
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# Project Outputs & Temp Workspaces
+outputs/
+temp_workspace/
+
+# Ignore all video and media assets just to be safe
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment variables (always good practice)
+.env
