@@ -4,14 +4,18 @@ app.py — Shorts Forge AI: Entry Point & Mode Router
 Thin orchestration layer that:
   1. Configures the Streamlit page
   2. Renders the shared sidebar (subtitle styling + live canvas)
-  3. Routes to the active mode tab (Legacy or Multi-Clip)
+  3. Routes to the active mode tab (Legacy, Multi-Clip, or 2.5D Explainer)
 """
 
 import streamlit as st
 from ui.sidebar import render_sidebar
 from ui.mode_legacy import render_legacy_mode
 from ui.mode_multiclip import render_multiclip_mode
+from ui.mode_explainer import render_explainer_mode
+from ui.mode_tts import render_tts_mode
 
+from dotenv import load_dotenv
+load_dotenv()
 
 # ── Page config (must be first Streamlit call) ────────────────────────
 st.set_page_config(
@@ -72,9 +76,11 @@ sidebar_config = render_sidebar()
 
 
 # ── Mode tabs ─────────────────────────────────────────────────────────
-tab_legacy, tab_multiclip = st.tabs([
+tab_legacy, tab_multiclip, tab_explainer, tab_tts = st.tabs([
     "🎞️ Legacy Asset Stitcher",
     "🎬 Multi-Clip Processor",
+    "🧬 2.5D Explainer",
+    "🎙️ Text to Speech",
 ])
 
 with tab_legacy:
@@ -82,3 +88,9 @@ with tab_legacy:
 
 with tab_multiclip:
     render_multiclip_mode(sidebar_config)
+
+with tab_explainer:
+    render_explainer_mode(sidebar_config)
+
+with tab_tts:
+    render_tts_mode(sidebar_config)
